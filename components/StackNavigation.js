@@ -6,7 +6,7 @@ import ProductDetails from "./ProductDetails";
 const StackNavigation = () => {
   const Stack = createNativeStackNavigator();
   return (
-    <Stack.Navigator screenOptions={{ presentation: "modal" }}>
+    <Stack.Navigator>
       <Stack.Screen
         name="Home"
         component={HomeScreen}

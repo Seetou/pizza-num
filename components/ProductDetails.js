@@ -5,20 +5,24 @@ import {
   Image,
   Pressable,
   FlatList,
+  ScrollView,
 } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useLayoutEffect } from "react";
 import axios from "axios";
 
-const ProductDetails = ({ route }) => {
+const ProductDetails = ({ route, navigation }) => {
   const { mealId } = route.params;
   const [mealDetails, setMealDetails] = useState();
+  const [headerTitle, setHeaderTitle] = useState();
 
   const getDetails = async () => {
     try {
       const response = await axios.get(
         `https://forkify-api.herokuapp.com/api/get?rId=${mealId}`
       );
-      if (response) setMealDetails(response.data.recipe);
+
+      setMealDetails(response.data.recipe);
+      setHeaderTitle(mealDetails.title);
     } catch (error) {
       console.log(error);
     }
@@ -26,7 +30,8 @@ const ProductDetails = ({ route }) => {
 
   useEffect(() => {
     getDetails();
-  }, []);
+    navigation.setOptions({ title: headerTitle });
+  }, [mealDetails]);
 
   return (
     mealDetails && (
@@ -76,7 +81,7 @@ const styles = StyleSheet.create({
 
   image: {
     width: "100%",
-    height: 200,
+    height: "50%",
     borderRadius: 15,
   },
 
