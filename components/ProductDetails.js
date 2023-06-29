@@ -10,10 +10,9 @@ import {
 import React, { useEffect, useState, useLayoutEffect } from "react";
 import axios from "axios";
 
-const ProductDetails = ({ route, navigation }) => {
+const ProductDetails = ({ route }) => {
   const { mealId } = route.params;
   const [mealDetails, setMealDetails] = useState();
-  const [headerTitle, setHeaderTitle] = useState();
 
   const getDetails = async () => {
     try {
@@ -22,7 +21,6 @@ const ProductDetails = ({ route, navigation }) => {
       );
 
       setMealDetails(response.data.recipe);
-      setHeaderTitle(mealDetails.title);
     } catch (error) {
       console.log(error);
     }
@@ -30,8 +28,7 @@ const ProductDetails = ({ route, navigation }) => {
 
   useEffect(() => {
     getDetails();
-    navigation.setOptions({ title: headerTitle });
-  }, [mealDetails]);
+  }, []);
 
   return (
     mealDetails && (

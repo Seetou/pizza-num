@@ -8,7 +8,9 @@ const ProductCard = ({ mealId, title, image, price }) => {
   return (
     <Pressable
       style={styles.container}
-      onPress={() => navigation.navigate("Product Details", { mealId })}
+      onPress={() =>
+        navigation.navigate("Product Details", { mealId, screenTitle: title })
+      }
     >
       <Image source={{ uri: `${image}` }} style={styles.image} />
       <View style={styles.innerContainer}>

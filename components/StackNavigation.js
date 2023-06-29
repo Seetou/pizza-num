@@ -15,7 +15,7 @@ const StackNavigation = () => {
       <Stack.Screen
         name="Product Details"
         component={ProductDetails}
-        // options={{ presentation: "modal" }}
+        options={({ route }) => ({ title: route.params.screenTitle })}
       />
     </Stack.Navigator>
   );
