@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import ProductDetails from "./ProductDetails";
+import ProductDetails from "../screens/ProductDetails";
 
 const ProductCard = ({ mealId, title, image, price }) => {
   const navigation = useNavigation();

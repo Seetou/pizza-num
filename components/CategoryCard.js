@@ -1,10 +1,21 @@
-import { StyleSheet, Text, View, ImageBackground } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ImageBackground,
+  Pressable,
+} from "react-native";
 import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
+import { useNavigation } from "@react-navigation/native";
 
 const CategoryCard = ({ imageSrc, title }) => {
+  const navigation = useNavigation();
   return (
-    <View style={styles.container}>
+    <Pressable
+      style={styles.container}
+      onPress={() => navigation.navigate("Category", { categoryName: title })}
+    >
       <ImageBackground
         source={imageSrc}
         resizeMode="cover"
@@ -17,7 +28,7 @@ const CategoryCard = ({ imageSrc, title }) => {
           <Text style={styles.title}>{title}</Text>
         </LinearGradient>
       </ImageBackground>
-    </View>
+    </Pressable>
   );
 };
 
